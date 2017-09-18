@@ -1,0 +1,48 @@
+Script started on Tue 10 Jan 2017 11:37:26 AM EST
+[?1034h(1) thoth $ gcc label.c
+gcc: label.c: No such file or directory
+gcc: no input files
+(2) thoth $ gcc label.c[C[C[1P.c[1P.c1.c
+lab1.c: In function ‘main’:
+lab1.c:5: error: expected ‘;’ before ‘return’
+(3) thoth $ Use "exit" to leave the shell.
+(3) thoth $ ls
+lab1  lab1.c  lab1.o  typescript
+(4) thoth $ more typescript
+(5) thoth $ more typescript
+(5) thoth $ clear
+[H[2J(6) thoth $ more typexcrip[K[K[K[K[Kscript
+(7) thoth $ gcc lab1.c
+lab1.c: In function ‘main’:
+lab1.c:5: error: expected ‘;’ before ‘return’
+(8) thoth $ script
+Script started, file is typescript
+[?1034h(1) thoth $ lab1.c
+bash: lab1.c: command not found
+(2) thoth $ gcc ab1[K[K[Klab1.c
+lab1.c: In function ‘main’:
+lab1.c:5: error: expected ‘;’ before ‘return’
+(3) thoth $ exit
+exit
+Script done, file is typescript
+(9) thoth $ ls
+lab1  lab1.c  lab1.o  typescript
+(10) thoth $ more typescip[K[Kript
+Script started on Tue 10 Jan 2017 11:40:00 AM EST
+[?1034h(1) thoth $ lab1.c
+bash: lab1.c: command not found
+(2) thoth $ gcc ab1[K[K[Klab1.c
+lab1.c: In function ‘main’:
+lab1.c:5: error: expected ‘;’ before ‘return’
+(3) thoth $ exit
+exit
+
+Script done on Tue 10 Jan 2017 11:40:23 AM EST
+(11) thoth $ ls
+lab1  lab1.c  lab1.o  typescript
+(12) thoth $ logout
+bash: logout: not login shell: use `exit'
+(13) thoth $ exit
+exit
+
+Script done on Tue 10 Jan 2017 11:50:40 AM EST

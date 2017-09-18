@@ -1,0 +1,41 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+
+struct Node {
+  int grade;
+  struct Node *next;
+};
+
+struct Node *head = NULL;
+
+
+int printList() {
+  struct Node *ptr = head;
+  int grade_sum= 0;
+  int num_of_grades = 0;
+  while(ptr != NULL) {
+    num_of_grades++;
+    grade_sum += ptr->grade;
+    ptr = ptr->next;
+  }
+  printf("%d", grade_sum/num_of_grades);
+
+}
+
+
+int main(int argc, char *argv[]){
+  int user_in = 0;
+  
+  do{
+    printf("Enter an integer");
+    scanf("%d", &user_in);
+    struct Node *new_node = malloc(sizeof(struct Node));
+    new_node->grade = user_in;
+    new_node->next = head;
+    head = new_node;
+  }while(usr_in
+  printList();
+  
+  return 0;
+}
