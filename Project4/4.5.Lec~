@@ -1,0 +1,82 @@
+execvp()
+	-v takes array of args
+	-p searches path of executable
+
+./ : says to shell... "take the dot, expand it to be current directory , add a slash.. heres the executable"
+
+Shell has special variables: "environment variables"
+      -path .. colon sperarated list of directories
+      	    -takes ls, concats to first path in path
+	    -searches each directory and sees if it can use ls
+
+eg.)
+
+	if (fork() == 0)
+	{
+		char *args[3] = {"ls", "-al", NULL};
+		execvp(args[0], args);
+	}
+	else
+	}
+		int status;
+		wait(&status);
+		printf("Hi fromt he paprent\n");
+	}
+	return 0;
+
+
+// output is
+
+   	  1.)output from passed flags to execvp
+	  2.)"Hi from the parent"
+
+
+wait() returns success or failure..  Need to know if we were successful in waiting, or not. 
+       -Also returning status(return value that child process exited with)
+
+Child Process termination:
+      -Normal = your prog voluntarily called exit, because program chose to exit!
+      -Ab-Normal = fancy word for crashing... OS chouce that process terminated, NOT the prog executing syscall
+      		 -If prog crashed: it never called exit, value of status woudl not be set. 
+		 -wait() tells us by return value, whether thing we are waiting on was succesfully waited for or wasnt
+		 -whether is was set or not.. 
+		 -Non zero exit status indicates that something didnt go quite right. 
+
+
+---DEVICE DRIVERS---
+
+	  Printing text:  take text(numbers)... turn on pixels on a screen
+	  write() generic syscall that means "output"
+	  	  -someone has to know how to do this stuff...  true... but it isnt the OS
+
+          if OS knew how to do this.. .Youd never be able to install software that was invented after the OS was installed. 
+	     -same with printers
+	     But we knoe how to do this... must install a driver.
+
+	  Driver: implementation of syscalls like read() or write(), for the particular peace of hardware or software you want to use. 
+	  
+	  Interface: provides abstration, abstraction about hiding of details. 
+	  eg.) electrical outlet:
+	       		  -we make promises about what that inerface is going to do 
+			      (in US)
+			      -deliver 120v of AC
+			      -60 hz cycle (60 times / second)
+			      
+
+SOFTWARE LAYERS
+	 
+	 User-Level I/O soft & Lib        ---> USER
+
+	 Device-INdependant OS Software                           |
+	 	-Takes file decript thats passed, 		  |
+		and figures out what device driver to envoke	  |
+	 Device Drivers						  |
+	 	-repos of device specific code			  |
+		knows how to tell HDD to write data               | OS (Kernel)
+	 Interrupt Handlers		    			  |
+	 	-Syscalls is a software interrupt		
+	 	
+	 Hardware
+		-Talk back via Hardware interrupts                    
+
+Syscall is a software interrupt

@@ -1,0 +1,109 @@
+/*0=======================================================0
+  |  Title:    Custom UNIX Shell                          |
+  |  Author:   Brandon S. Hang                            |
+  |  Version:  1.400                                      |
+  |  Class:    CS 0449                                    |
+  |            Project 5                                  |
+  |            April 24, 2016                             |
+  |                                                       |
+  |  This program is an implementation of a custom UNIX   |
+  |  shell.  It has the built-in commands of "exit",      |
+  |  "cd", and "time".  It also handles other UNIX        |
+  |  commands with a number of arguments.  For            |
+  |  simplicity, the maximum input length is capped at    |
+  |  1,024 characters while the number of arguments       |
+  |  is capped at 128.                                    |
+  |                                                       |
+  |  Compilation: gcc -o myshell myshell.c                |
+  |  Execution:   ./myshell                               |
+  0=======================================================0*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdint.h>
+#include <sys/times.h>
+#include <sys/wait.h>
+#include <time.h>
+#include <errno.h>
+
+#define MAXSIZE 1024// Defines the maximum input size
+#define MAXARGS 128// Defines the maximum number of arguments
+#define DELIMS " \t\n\r\v()<>|&;"
+
+void print_error(char *err);// Prototypes the function that prints error messages
+
+int main() {
+  
+  char input[MAXSIZE];// Input from the user
+  char *args[MAXARGS];// Array of arguments
+  char *command;// Holds the result of the strtok function
+  char *redir_in;// Holds the input redirection file
+  char *redir_out;// Holds the output redirection file
+  struct tms timer_start;// Holds the CPU start time struct
+  struct tms timer_end;// Holds the CPU end time struct
+  time_t real_start;// Stores the starting real time
+  time_t real_end;// Stores the ending real time
+  int counter = 1;// A counter next to the input line
+  int status = 0;// Stores the error status
+  int num_args = 0;// Stores the number of arguments in the current command
+  char timer = 0;// Boolean if "time" was entered first
+  char read = 0;// Boolean for input redirection
+  char write = 0;// Boolean for output redirection
+  
+  
+  while (1) {
+    printf("(%d) blueshell $ ", counter);// "blueshell" pays homage to the notorious Mario Kart item
+    
+    if (!fgets(input, 1000, stdin)) {// Exits the shell if fgets returns NULL
+      return 1;
+    }
+    if (strlen(input) <= 1) {// Continues the loop if an empty string is entered
+      continue;
+    }
+    
+    num_args = 0;// Resets the associated accumulators and booleans
+    timer = 0;
+    read = 0;
+    write = 0;
+    errno = 0;
+    status = 0;
+    counter++;// Increments the shell counter
+    
+    redir_in = strchr(input, '<');// Searches for the input redirection character
+    redir_out = strchr(input, '>');// Searches for the output redirection character
+    
+    if (redir_in != NULL) {// Stores the input file if redir_in is not null
+      redir_in = strtok(redir_in, DELIMS);
+      read = 1;
+    }
+    if (redir_out != NULL) {// Stores the output file if redir_in is not null
+      redir_out = strtok(redir_out, DELIMS);
+      write = 1;
+    }
+    
+    command = strtok(input, DELIMS);// Delimits the first token in the input
+    
+    if (command == NULL) {// Continues the loop if the token is null
+      continue;
+    }
+    if (0 == strcmp(command, "exit")) {// Exits the shell if the token is "exit"
+      exit(0);
+    }
+    if (0 == strcmp(command, "time")) {// Starts the CPU timer if the token is "time"
+      command = strtok(NULL, DELIMS);// Gets the next token (since time is not included as a command)
+      timer = 1;// Sets the time boolean to "true"
+      real_start = time(NULL);// Sets the realtime start
+      times(&timer_start);// Sets the CPU times start
+    }
+    
+    while (command != NULL) {// Loops while there is something to tokenize
+      char valid = 1;if (valid) strncat(path, "/", 1);
+      strncat(pastatus = chdir(path);wait(&statu}
+	      }
+    }
+
+
+    /*>>>>>>>>>>>>>>>>>>>>>> Error Printing Function <<<<<<<<<<<<<<<<<<<<<
+      | This function takes a pointer to a string and prints out t
